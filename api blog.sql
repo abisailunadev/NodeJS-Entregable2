@@ -26,7 +26,6 @@ CREATE TABLE "comments" (
 );
 
 CREATE TABLE "post_comments" (
-  "author" int NOT NULL,
   "post_id" int NOT NULL,
   "comment_id" int NOT NULL
 );
@@ -41,8 +40,6 @@ ALTER TABLE "posts" ADD FOREIGN KEY ("author") REFERENCES "users" ("id");
 ALTER TABLE "post_comments" ADD FOREIGN KEY ("post_id") REFERENCES "posts" ("id");
 
 ALTER TABLE "post_comments" ADD FOREIGN KEY ("comment_id") REFERENCES "comments" ("id");
-
-ALTER TABLE "post_comments" ADD FOREIGN KEY ("author") REFERENCES "users" ("id");
 
 ALTER TABLE "post_tags" ADD FOREIGN KEY ("tag_id") REFERENCES "tags" ("id");
 
@@ -63,3 +60,11 @@ insert into tags (name) values
 insert into comments (text, author) values
 ('Testing the comments', 1),
 ('Finally man. :)', 2);
+
+insert into post_comments (post_id, comment_id) values
+(1, 1),
+(2, 2);
+
+insert into post_tags (post_id, tag_id) values
+(2, 1),
+(1, 2);
